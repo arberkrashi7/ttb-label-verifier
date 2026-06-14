@@ -25,7 +25,7 @@ buttons, one screen.
 - **Matching:** Python standard library + [RapidFuzz](https://github.com/rapidfuzz/RapidFuzz)
   for fuzzy text comparison
 - **Frontend:** plain HTML + CSS + vanilla JavaScript (no framework, no build step)
-- **Deployment target:** Render or Railway
+- **Deployment target:** Render
 
 ---
 
@@ -46,8 +46,10 @@ ttb-label-verifier/
 │   └── make_sample_labels.py   # generates the test images in samples/
 ├── samples/               # five ready-made test labels (see Testing below)
 ├── requirements.txt
+├── render.yaml            # Render deploy blueprint
 ├── .env.example           # copy to .env and add your API key
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
@@ -172,15 +174,21 @@ debugging.
 
 ---
 
-## Deploying to Render / Railway
+## Deploying to Render
 
-The app is deployment-friendly (single entrypoint, env-var config, no local
-file dependencies beyond the bundled static assets).
+This repo includes a `render.yaml` blueprint, so deployment is a few clicks: in
+the [Render](https://render.com) dashboard choose **New + → Blueprint**, connect
+this repo, and when prompted paste your `ANTHROPIC_API_KEY`. It is stored as an
+encrypted secret on the host — never committed to the repo. Render then runs:
 
 - **Build:** `pip install -r requirements.txt`
 - **Start:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- **Environment:** set `ANTHROPIC_API_KEY` (and optionally `ANTHROPIC_MODEL`).
-- Make sure the platform uses **Python 3.10+**.
+- **Python:** pinned to 3.12 via the blueprint.
+
+> **Cold starts (free tier):** warm requests complete in under 5 seconds, but the
+> free Render instance sleeps after ~15 minutes of inactivity. The first visit
+> after it has slept takes ~30–60 seconds to wake — just click once to wake it,
+> then it stays responsive. A paid always-on instance removes this.
 
 ---
 
