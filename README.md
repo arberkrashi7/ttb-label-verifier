@@ -13,8 +13,6 @@ confidence level and a plain-language reason.
 The interface is intentionally minimal with large fonts, high contrast, big
 buttons, one screen.
 
-![overview](samples/01_pass.png)
-
 ---
 
 ## Tech stack
