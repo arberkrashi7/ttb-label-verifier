@@ -6,12 +6,12 @@ and Tobacco Tax and Trade Bureau).
 
 The agent uploads a label photo and types in the application values (brand name,
 class/type, alcohol content, net contents, government warning). The app reads the
-label with Claude's vision model and returns a clear, color-coded checklist —
-**PASS / FAIL / NEEDS REVIEW / CANNOT VERIFY** — for each field, with a
+label with Claude's vision model and returns a clear, color-coded checklist:
+**PASS / FAIL / NEEDS REVIEW / CANNOT VERIFY** for each field, with a
 confidence level and a plain-language reason.
 
-The interface is intentionally minimal — large fonts, high contrast, big
-buttons, one screen — so it's comfortable for non-technical users.
+The interface is intentionally minimal with large fonts, high contrast, big
+buttons, one screen.
 
 ![overview](samples/01_pass.png)
 
@@ -168,7 +168,7 @@ The **overall** status is the most severe outcome across all fields
 
 Bad file types, missing images, oversized uploads, unreadable images, invalid
 API keys, timeouts, lost connections, and any unexpected server error all return
-a clear, friendly message — never a stack trace. Errors appear as a bordered
+a clear, friendly message, and never a stack trace. Errors appear as a bordered
 red banner at the top of the page; real errors are logged server-side for
 debugging.
 
