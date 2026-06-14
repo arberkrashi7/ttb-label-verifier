@@ -1,0 +1,417 @@
+/* TTB Label Verifier — simple, high-contrast, large-type UI.
+   Designed to be easy to read and operate for non-technical users. */
+
+:root {
+  --bg: #eef1f5;
+  --card-bg: #ffffff;
+  --text: #141414;
+  --muted: #3f4754;
+  --accent: #1746c4;
+  --accent-dark: #10328f;
+  --ok: #136c33;
+  --error: #b3170f;
+  --border: #b3b9c2;
+  --field-bg: #fbfcfd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 23px;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: 50px;
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  font-size: 25px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.how-to {
+  font-size: 22px;
+  color: var(--text);
+  background: #e4ecfb;
+  border: 2px solid #b9cdf3;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 20px auto 0;
+  max-width: 640px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ---- Field groups ---- */
+
+.field {
+  margin-bottom: 36px;
+}
+
+.field-label {
+  display: block;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* ---- Image drop zone ---- */
+
+.drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 24px;
+  border: 3px dashed var(--border);
+  border-radius: 14px;
+  background: var(--field-bg);
+  cursor: pointer;
+  text-align: center;
+}
+
+.drop-zone:hover,
+.drop-zone:focus-within {
+  border-color: var(--accent);
+  background: #eef3ff;
+}
+
+.drop-zone.dragover {
+  border-color: var(--accent);
+  background: #e3ecff;
+}
+
+.drop-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.drop-icon {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.drop-text {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.drop-subtext {
+  font-size: 20px;
+}
+
+.preview {
+  max-width: 100%;
+  max-height: 360px;
+  border-radius: 10px;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 20px;
+}
+
+.file-name {
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.link-button {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 8px;
+}
+
+.link-button:hover {
+  color: var(--accent-dark);
+}
+
+/* ---- Text fields ---- */
+
+.text-field {
+  display: block;
+  margin-bottom: 22px;
+}
+
+.text-field:last-child {
+  margin-bottom: 0;
+}
+
+.text-label {
+  display: block;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.text-field input,
+.text-field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 23px;
+  padding: 16px 18px;
+  color: var(--text);
+  background: var(--field-bg);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+}
+
+.text-field textarea {
+  resize: vertical;
+}
+
+.text-field input:focus,
+.text-field textarea:focus {
+  outline: 3px solid #9ec0ff;
+  outline-offset: 1px;
+  border-color: var(--accent);
+  background: #ffffff;
+}
+
+/* ---- Big button ---- */
+
+.big-button {
+  display: block;
+  width: 100%;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 22px 36px;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.big-button:hover {
+  background: var(--accent-dark);
+}
+
+.big-button:focus {
+  outline: 4px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.big-button:active {
+  transform: translateY(1px);
+}
+
+.big-button:disabled {
+  background: #8b97b6;
+  cursor: default;
+}
+
+/* ---- Status message ---- */
+
+.status {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+/* The neutral "working..." message reserves a little space; the colored
+   states render as obvious bordered boxes so they can't be missed. */
+.status:empty {
+  margin: 0;
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.status.error {
+  color: var(--error);
+  background: #fce9e8;
+  border: 2px solid var(--error);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.status.error::before {
+  content: "⚠ ";
+}
+
+/* ---- Results ---- */
+
+.results {
+  margin-top: 28px;
+}
+
+/* Status colors, shared by the overall banner and per-field badges. */
+.pass {
+  --c-bg: #e7f6ec;
+  --c-fg: #15803d;
+  --c-border: #15803d;
+}
+.fail {
+  --c-bg: #fdeaea;
+  --c-fg: #b91c1c;
+  --c-border: #b91c1c;
+}
+.review {
+  --c-bg: #fdf4e3;
+  --c-fg: #9a6700;
+  --c-border: #9a6700;
+}
+.unknown {
+  --c-bg: #eef0f2;
+  --c-fg: #444444;
+  --c-border: #777777;
+}
+
+.overall {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  background: var(--c-bg);
+  color: var(--c-fg);
+  border: 2px solid var(--c-border);
+}
+
+.overall-icon {
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* ---- Checklist rows ---- */
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+  border: 2px solid var(--c-border);
+  border-radius: 14px;
+  background: var(--c-bg);
+}
+
+.check-row:last-child {
+  margin-bottom: 0;
+}
+
+.check-icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  background: var(--c-fg);
+  border-radius: 50%;
+}
+
+.check-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.check-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.check-field {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.check-pill {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 4px 12px;
+  border-radius: 999px;
+  color: var(--c-fg);
+  background: #ffffff;
+  border: 2px solid var(--c-border);
+}
+
+.check-reason {
+  font-size: 20px;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+.check-detail {
+  font-size: 16px;
+  margin: 0;
+  color: var(--muted);
+  word-break: break-word;
+}
+
+.timing {
+  margin: 20px 0 0;
+  font-size: 18px;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* ---- Accessibility helper ---- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

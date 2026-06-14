@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TTB Label Verifier</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>TTB Label Verifier</h1>
+        <p class="subtitle">Check that an alcohol label matches its application.</p>
+        <p class="how-to">
+          Add the label photo, type the details from the application,
+          then press the big blue <strong>Verify Label</strong> button.
+        </p>
+      </header>
+
+      <p id="status" class="status" role="status" aria-live="assertive"></p>
+
+      <form id="verify-form" class="card" novalidate>
+        <!-- Step 1: the label image -->
+        <div class="field">
+          <span class="field-label">1. Label Image</span>
+
+          <label id="drop-zone" class="drop-zone" for="image-input">
+            <div id="drop-prompt" class="drop-prompt">
+              <span class="drop-icon" aria-hidden="true">&#128247;</span>
+              <span class="drop-text">Click here to choose an image</span>
+              <span class="drop-subtext">or drag and drop it here</span>
+            </div>
+            <img id="preview" class="preview" alt="Label preview" hidden />
+          </label>
+
+          <input id="image-input" class="visually-hidden" type="file"
+                 accept="image/*" />
+
+          <div id="file-row" class="file-row" hidden>
+            <span id="file-name" class="file-name"></span>
+            <button id="remove-image" class="link-button" type="button">
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: the application values -->
+        <div class="field">
+          <span class="field-label">2. Application Values</span>
+
+          <label class="text-field">
+            <span class="text-label">Brand Name</span>
+            <input name="brand_name" type="text" autocomplete="off"
+                   placeholder="e.g. Old Mill" />
+          </label>
+
+          <label class="text-field">
+            <span class="text-label">Class / Type</span>
+            <input name="class_type" type="text" autocomplete="off"
+                   placeholder="e.g. Kentucky Straight Bourbon Whiskey" />
+          </label>
+
+          <label class="text-field">
+            <span class="text-label">Alcohol Content (ABV)</span>
+            <input name="alcohol_content" type="text" autocomplete="off"
+                   placeholder="e.g. 45% Alc/Vol" />
+          </label>
+
+          <label class="text-field">
+            <span class="text-label">Net Contents</span>
+            <input name="net_contents" type="text" autocomplete="off"
+                   placeholder="e.g. 750 mL" />
+          </label>
+
+          <label class="text-field">
+            <span class="text-label">Government Warning Text</span>
+            <textarea name="government_warning" rows="4"
+                      placeholder="Paste the full GOVERNMENT WARNING statement"></textarea>
+          </label>
+        </div>
+
+        <button id="verify-btn" class="big-button" type="submit">
+          Verify Label
+        </button>
+      </form>
+
+      <section id="results" class="card results" hidden aria-live="polite">
+        <p id="overall" class="overall"></p>
+        <div id="result-rows"></div>
+        <p id="timing" class="timing"></p>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
