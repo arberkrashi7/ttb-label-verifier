@@ -1,0 +1,18 @@
+# Render Blueprint — deploys the TTB Label Verifier as a free web service.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: ttb-label-verifier
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      # sync: false -> Render asks for this in the dashboard and stores it as a
+      # secret. The value is NEVER committed to the repo.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Pin a Python with prebuilt wheels for all dependencies.
+      - key: PYTHON_VERSION
+        value: "3.12.7"
