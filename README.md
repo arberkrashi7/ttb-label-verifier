@@ -187,7 +187,7 @@ encrypted secret on the host — never committed to the repo. Render then runs:
 
 > **Cold starts (free tier):** warm requests complete in under 5 seconds, but the
 > free Render instance sleeps after ~15 minutes of inactivity. The first visit
-> after it has slept takes ~30–60 seconds to wake — just click once to wake it,
+> after it has slept takes ~30–60 seconds to wake, just click once to wake it,
 > then it stays responsive. A paid always-on instance removes this.
 
 ---
